@@ -14,8 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set ( PGM_GITHUB "https://github.com/manticoresoftware/PGM-index/archive/refs/heads/pgm_2022_08_02.zip" )
+# set ( PGM_GITHUB "https://github.com/manticoresoftware/PGM-index/archive/refs/heads/pgm_2022_08_02.zip" )
+set ( PGM_GITHUB "${columnar_SOURCE_DIR}/external_packages/PGM-index-pgm_2022_08_02.zip" )
 set ( PGM_BUNDLEZIP "${LIBS_BUNDLE}/pgm_2022_08_02.zip" )
+
 
 cmake_minimum_required ( VERSION 3.17 FATAL_ERROR )
 include ( update_bundle )
@@ -26,6 +28,8 @@ include ( update_bundle )
 # determine destination folder where we expect pre-built pgm
 find_package ( PGM QUIET CONFIG )
 return_if_target_found ( PGM::pgmindexlib "ready (no need to build)" )
+
+message(STATUS "-----------------recode----------------- Download locally: ${PGM_GITHUB}")
 
 # not found. Populate and prepare sources
 select_nearest_url ( PGM_PLACE pgm ${PGM_BUNDLEZIP} ${PGM_GITHUB} )

@@ -14,7 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set ( FP_GITHUB "https://github.com/manticoresoftware/FastPFor/archive/refs/heads/simde.zip" )
+# set ( FP_GITHUB "https://github.com/manticoresoftware/FastPFor/archive/refs/heads/simde.zip" )
+set ( FP_GITHUB "${columnar_SOURCE_DIR}/external_packages/FastPFor-simde.zip" )
 set ( FP_BUNDLEZIP "${LIBS_BUNDLE}/FastPFor-simde.zip" )
 
 cmake_minimum_required ( VERSION 3.17 FATAL_ERROR )
@@ -23,6 +24,8 @@ include ( update_bundle )
 # determine destination folder where we expect pre-built fastpfor
 find_package ( FastPFOR QUIET CONFIG )
 return_if_target_found ( FastPFOR::FastPFOR "ready (no need to build)" )
+
+message(STATUS "-----------------recode----------------- Download locally: ${FP_GITHUB}")
 
 # not found. Populate and prepare sources
 select_nearest_url ( FP_PLACE fastpfor ${FP_BUNDLEZIP} ${FP_GITHUB} )

@@ -14,7 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set ( HNSW_GITHUB "https://github.com/manticoresoftware/hnswlib/archive/refs/heads/master.zip" )
+# set ( HNSW_GITHUB "https://github.com/manticoresoftware/hnswlib/archive/refs/heads/master.zip" )
+set ( HNSW_GITHUB "${columnar_SOURCE_DIR}/external_packages/hnswlib-master.zip" )
 set ( HNSW_BUNDLEZIP "${LIBS_BUNDLE}/hnswlib-0.7.0.tar.gz" )
 
 cmake_minimum_required ( VERSION 3.17 FATAL_ERROR )
@@ -23,6 +24,9 @@ include ( update_bundle )
 # determine destination folder where we expect pre-built hnswlib
 find_package ( hnswlib QUIET CONFIG )
 return_if_target_found ( hnswlib::hnswlib "found ready" )
+
+
+message(STATUS "-----------------recode----------------- Download locally: ${HNSW_GITHUB}")
 
 # not found. Populate and prepare sources
 select_nearest_url ( HNSW_PLACE hnswlib ${HNSW_BUNDLEZIP} ${HNSW_GITHUB} )
